@@ -23,7 +23,7 @@ namespace ClassicUs.ManuAPI
             GameEvents.RaiseAfterReport(__instance, target);
     }
 
-    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
+    [HarmonyPatch(typeof(MeetingHud), "Start")]
     internal static class MeetingHud_Start_GameEvents_Patch
     {
         private static void Postfix(MeetingHud __instance) => GameEvents.RaiseMeeting(__instance);
@@ -65,19 +65,19 @@ namespace ClassicUs.ManuAPI
         private static void Postfix() => GameEvents.RaiseGameStarted();
     }
 
-    [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
+    [HarmonyPatch(typeof(AmongUsClient), "OnGameEnd")]
     internal static class AmongUsClient_OnGameEnd_GameEvents_Patch
     {
         private static void Prefix(GameOverReason gameOverReason) => GameEvents.RaiseGameEnded(gameOverReason);
     }
 
-    [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnPlayerJoined))]
+    [HarmonyPatch(typeof(AmongUsClient), "OnPlayerJoined")]
     internal static class AmongUsClient_OnPlayerJoined_GameEvents_Patch
     {
         private static void Postfix(ClientData data) => GameEvents.RaisePlayerJoined(data);
     }
 
-    [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnPlayerLeft))]
+    [HarmonyPatch(typeof(AmongUsClient), "OnPlayerLeft")]
     internal static class AmongUsClient_OnPlayerLeft_GameEvents_Patch
     {
         private static void Prefix(ClientData data, DisconnectReasons reason) => GameEvents.RaisePlayerLeft(data, reason);

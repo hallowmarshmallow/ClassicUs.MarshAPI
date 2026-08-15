@@ -99,7 +99,7 @@ namespace ClassicUs.ManuAPI
         }
     }
 
-    [HarmonyPatch(typeof(PingTracker), nameof(PingTracker.Update))]
+    [HarmonyPatch(typeof(PingTracker), "Update")]
     internal static class PingTracker_Update_Patch
     {
         private static void Postfix(PingTracker __instance)

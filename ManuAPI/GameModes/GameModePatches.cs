@@ -14,7 +14,7 @@ namespace ClassicUs.ManuAPI
         private static void Postfix() => GameModeRegistry.Update();
     }
 
-    [HarmonyPatch(typeof(MeetingHud), nameof(MeetingHud.Start))]
+    [HarmonyPatch(typeof(MeetingHud), "Start")]
     internal static class MeetingHud_Start_GameMode_Patch
     {
         private static void Postfix(MeetingHud __instance) => GameModeRegistry.MeetingStarted(__instance);
@@ -32,7 +32,7 @@ namespace ClassicUs.ManuAPI
         private static bool Prefix() => !GameModeRegistry.TryHandleEndCriteria();
     }
 
-    [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
+    [HarmonyPatch(typeof(AmongUsClient), "OnGameEnd")]
     internal static class AmongUsClient_OnGameEnd_GameMode_Patch
     {
         private static void Prefix(GameOverReason gameOverReason) => GameModeRegistry.NotifyGameEnded(gameOverReason);

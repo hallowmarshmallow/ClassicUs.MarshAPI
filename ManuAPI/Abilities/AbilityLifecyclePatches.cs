@@ -9,7 +9,7 @@ namespace ClassicUs.ManuAPI
         private static void Prefix() => AbilityLifecycle.SafeReset("HudManager.Start");
     }
 
-    [HarmonyPatch(typeof(AmongUsClient), nameof(AmongUsClient.OnGameEnd))]
+    [HarmonyPatch(typeof(AmongUsClient), "OnGameEnd")]
     internal static class AmongUsClient_OnGameEnd_AbilityReset_Patch
     {
         private static void Prefix() => AbilityLifecycle.SafeReset("AmongUsClient.OnGameEnd");

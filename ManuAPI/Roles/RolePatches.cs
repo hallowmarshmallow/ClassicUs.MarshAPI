@@ -165,7 +165,7 @@ namespace ClassicUs.ManuAPI
         }
     }
 
-    [HarmonyPatch(typeof(IntroCutscene), nameof(IntroCutscene.GetTeamColor))]
+    [HarmonyPatch(typeof(IntroCutscene), "GetTeamColor")]
     internal static class IntroCutscene_GetTeamColor_Patch
     {
         private static void Postfix(RoleBehaviour role, ref Color __result)
