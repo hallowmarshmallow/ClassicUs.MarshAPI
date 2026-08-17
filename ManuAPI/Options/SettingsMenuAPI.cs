@@ -133,7 +133,7 @@ namespace ClassicUs.ManuAPI
             if (item == null || _menu.AllItems == null) return;
             for (int i = 0; i < _menu.AllItems.Count; i++)
             {
-                if (_menu.AllItems[i] == item)
+                if (_menu.AllItems.get_Item(i) == item)
                     return;
             }
 
@@ -159,7 +159,7 @@ namespace ClassicUs.ManuAPI
         internal static void BuildAll(GameSettingMenu menu)
         {
             if (menu == null || menu.AllItems == null || menu.AllItems.Count == 0) return;
-            var parent = menu.AllItems[0].parent;
+            var parent = menu.AllItems.get_Item(0).parent;
             if (parent == null) return;
             var template = menu.keyvaluePrefab;
             if (template == null) return;

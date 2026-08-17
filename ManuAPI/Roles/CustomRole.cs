@@ -94,7 +94,7 @@ namespace ClassicUs.ManuAPI
             string templateName = team == RoleTeamTypes.Impostor ? "ImpostorRole" : "CrewmateRole";
             for (int i = 0; i < roles.Count; i++)
             {
-                var r = roles[i];
+                var r = roles.get_Item(i);
                 if (r != null && r.GetIl2CppType().Name == templateName)
                     return r.enemyTeams;
             }

@@ -404,11 +404,15 @@ namespace ClassicUs.ManuAPI
 
             // Virtual roles deliberately reuse a vanilla RoleBehaviour.  Do not erase the
             // virtual assignment merely because the backing behaviour is ImpostorRole or
-            // CrewmateRole on the next FixedUpdate.
+            // CrewmateRole on the next FixedUpdate.  But DO erase it when the backing role's
+            // team no longer matches the virtual role's team (e.g. Freeplay switches an
+            // Engineer onto ImpostorRole): keeping the stale assignment would leave the old
+            // role's abilities active on the new team.
             if (_assignedCustomRoles.TryGetValue(player.Data.PlayerId, out var existingRoleTypeName))
             {
                 var existing = FindDescriptor(existingRoleTypeName);
-                if (existing != null && FindHandle(existing)?.Virtual == true)
+                if (existing != null && FindHandle(existing)?.Virtual == true &&
+                    role != null && role.RoleTeamType == existing.TeamType)
                     return;
             }
 

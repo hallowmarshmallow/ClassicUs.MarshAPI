@@ -175,10 +175,10 @@ namespace ClassicUs.ManuAPI
         }
     }
 
-    [HarmonyPatch(typeof(IntroCutscene._BeginTeam_d__35), nameof(IntroCutscene._BeginTeam_d__35.MoveNext))]
+    [HarmonyPatch(typeof(IntroCutscene._BeginTeam_d__36), nameof(IntroCutscene._BeginTeam_d__36.MoveNext))]
     internal static class IntroCutscene_BeginTeam_MoveNext_Patch
     {
-        private static void Postfix(IntroCutscene._BeginTeam_d__35 __instance, ref bool __result)
+        private static void Postfix(IntroCutscene._BeginTeam_d__36 __instance, ref bool __result)
         {
             if (!__result || __instance == null || __instance.__4__this == null) return;
 
@@ -319,7 +319,7 @@ namespace ClassicUs.ManuAPI
                 var visibleRoleNames = new HashSet<string>();
                 for (int i = 0; i < game.ActiveItems.Count; i++)
                 {
-                    var item = game.ActiveItems[i];
+                    var item = game.ActiveItems.get_Item(i);
                     if (item == null) continue;
 
                     var existingButton = item.GetComponent<TaskAddButton>();
@@ -374,7 +374,7 @@ namespace ClassicUs.ManuAPI
             var rolePositions = new List<Vector3>();
             for (int i = 0; i < game.ActiveItems.Count; i++)
             {
-                var item = game.ActiveItems[i];
+                var item = game.ActiveItems.get_Item(i);
                 if (item == null) continue;
 
                 var button = item.GetComponent<TaskAddButton>();
@@ -382,29 +382,24 @@ namespace ClassicUs.ManuAPI
                     rolePositions.Add(item.localPosition);
             }
 
-            if (rolePositions.Count <= 0)
-            {
-                target.localPosition = game.RoleButton.transform.localPosition;
-                return;
-            }
+            // The game lays the Freeplay role folder out as a 5-per-row grid
+            // (TaskAdderGame.ApplyClickMask passes numPerRow=5 to
+            // Scroller.CalculateAndSetYBounds). Position appended roles in that same grid
+            // so the list wraps to new rows instead of running off the bottom of the screen.
+            const int PerRow = 5;
+            int col = rolePositions.Count % PerRow;
+            int row = rolePositions.Count / PerRow;
 
-            if (rolePositions.Count == 1)
-            {
-                float spacing = Math.Abs(game.lineHeight);
-                if (spacing < 0.05f) spacing = 0.45f;
+            float folderWidth = Math.Abs(game.folderWidth);
+            float lineHeight = Math.Abs(game.lineHeight);
+            if (folderWidth < 0.05f) folderWidth = 1.5f;
+            if (lineHeight < 0.05f) lineHeight = 0.45f;
 
-                var fallbackNext = rolePositions[0];
-                fallbackNext.y -= spacing;
-                target.localPosition = fallbackNext;
-                return;
-            }
+            Vector3 origin = rolePositions.Count > 0
+                ? rolePositions[0]
+                : game.RoleButton.transform.localPosition;
 
-            var delta = rolePositions[rolePositions.Count - 1] - rolePositions[rolePositions.Count - 2];
-            if (delta.sqrMagnitude < 0.0025f)
-                delta = new Vector3(0f, -Math.Max(Math.Abs(game.lineHeight), 0.45f), 0f);
-
-            var projectedNext = rolePositions[rolePositions.Count - 1] + delta;
-            target.localPosition = projectedNext;
+            target.localPosition = new Vector3(origin.x + col * folderWidth, origin.y - row * lineHeight, origin.z);
         }
     }
 
