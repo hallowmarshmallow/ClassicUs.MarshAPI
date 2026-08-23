@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using ClassicUs.Manactor;
+using ClassicUs.Reactor;
 using HarmonyLib;
 using TMPro;
 using UnityEngine;
@@ -167,7 +167,7 @@ namespace ClassicUs.ManuAPI
             for (int i = 0; i < _registrations.Count; i++)
             {
                 var reg = _registrations[i];
-                int start = ManactorAPI.ReserveSettingsRows(menu.GetInstanceID(), reg.RowCount);
+                int start = ReactorAPI.ReserveSettingsRows(menu.GetInstanceID(), reg.RowCount);
                 var builder = new SettingsMenuBuilder(menu, parent, template, start);
                 try { reg.Build(builder); }
                 catch (Exception e) { ManuAPIPlugin.Log.LogError("SettingsMenuAPI build failed: " + e); }

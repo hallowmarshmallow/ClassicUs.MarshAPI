@@ -31,5 +31,5 @@ private static void OnMurder(MurderEventArgs e)
 | `GameStarted`, `GameEnded` | The active game begins or ends. |
 | `PlayerJoined`, `PlayerLeft` | Lobby connection changes; `PlayerLeft` includes the disconnect reason. |
 
-Events are local callbacks, not RPCs. Use Manactor RPCs whenever custom state must be
+Events are local callbacks, not RPCs. Use Reactor RPCs whenever custom state must be
 replicated to other clients.

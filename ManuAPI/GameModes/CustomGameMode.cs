@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using ClassicUs.Manactor;
+using ClassicUs.Reactor;
 
 namespace ClassicUs.ManuAPI
 {
@@ -51,7 +51,7 @@ namespace ClassicUs.ManuAPI
         public static CustomGameMode ActiveGameMode => _activeId != null && Modes.TryGetValue(_activeId, out var mode) ? mode : null;
         public static bool IsHost => AmongUsClient.Instance != null && AmongUsClient.Instance.AmHost;
 
-        internal static void RegisterNetworkHandlers() => ManactorAPI.RegisterRpcMethods(typeof(GameModeRegistry));
+        internal static void RegisterNetworkHandlers() => ReactorAPI.RegisterRpcMethods(typeof(GameModeRegistry));
 
         public static void Register(CustomGameMode mode)
         {
@@ -79,7 +79,7 @@ namespace ClassicUs.ManuAPI
             if (id != null && !Modes.ContainsKey(id)) return false;
 
             ApplySelection(id);
-            ManactorAPI.SendRpcMethod(SelectModeRpc, id ?? string.Empty);
+            ReactorAPI.SendRpcMethod(SelectModeRpc, id ?? string.Empty);
             return true;
         }
 
@@ -93,7 +93,7 @@ namespace ClassicUs.ManuAPI
             return true;
         }
 
-        [ManactorRpc(SelectModeRpc)]
+        [ReactorRpc(SelectModeRpc)]
         private static void OnSelectModeRpc(byte senderId, string id)
         {
             var host = AmongUsClient.Instance != null ? AmongUsClient.Instance.HostId : -1;

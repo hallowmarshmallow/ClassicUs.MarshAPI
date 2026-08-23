@@ -1,4 +1,4 @@
-using ClassicUs.Manactor;
+using ClassicUs.Reactor;
 
 namespace ClassicUs.ManuAPI
 {
@@ -17,7 +17,7 @@ namespace ClassicUs.ManuAPI
         {
             request ??= new KillRequest();
 
-            ManactorAPI.KillPlayer(killer, target, new CustomKillOptions
+            ReactorAPI.KillPlayer(killer, target, new CustomKillOptions
             {
                 TeleportKiller = request.TeleportKiller,
                 CreateDeadBody = request.CreateDeadBody,

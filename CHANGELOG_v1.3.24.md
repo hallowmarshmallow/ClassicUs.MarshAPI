@@ -1,6 +1,24 @@
+# ManuAPI v1.6.0
+
+## New Core APIs
+
+- **PlayerUtils** — centralized player lookup (`FindById`, `FindByOwnerId`), name resolution (`NameSafe`), team filtering (`AllAliveOnTeam`), distance/range queries (`ClosestAlive`), teleport (`Teleport` using SnapTo).
+- **RpcExtensions** — binary base64 RPC serialization for argument types beyond Reactor's native bool/byte/int/float/string: `SendPacked` sends `Vector2`, `Vector3`, `byte[]`, `long`, `ulong`, `double` etc. through a single string-keyed Reactor RPC. Works with `[ReactorRpc]` handlers reading a `string payload` argument.
+- **CosmeticAPI** — player outfit management: `SetColor`, `SetHat`, `SetHatByProductId`, `SetSkin`, `SetSkinByProductId`, `SetPet`, `SetPetByProductId`, `SetNamePlate`. Find hats/skins/pets by ProductId substring.
+- **MapAPI** — vent/console/door queries from `ShipStatus.Instance`: `AllVents`, `FindVentById`, `ClosestVent`, `ConnectedVents`, `AllConsoles`, `ClosestConsole`, `AllDoors`, `CloseDoors`, `RepairSystem`, `RandomSpawnPosition`.
+- **SoundAPI** — extends `SpatialAudio` with 2D global/local sounds (`PlayGlobal`, `PlayLocal`), looping audio (`PlayLooping` / `StopLooping` / managed handles), kill sound (`PlayKillSound`), and name-based lookup (`PlaySoundByName`).
+- **MeetingAPI** — meeting state queries: `IsInMeeting`, `AliveVoterCount`, `VotedCount`, `VoteTally`, `MostVotedPlayer`, `VotesFor`, `VoteTargetName`, `WasExiled`, `ExiledPlayerName`. Inject meeting chat messages via `SendMeetingChat`.
+- **CoroutineRunner** — safe Unity coroutine execution from MonoBehaviour callbacks (avoids IEnumerator Harmony patching which segfaults on Linux IL2CPP). All coroutines auto-stop on `GameEvents.GameEnded`.
+- **TaskAPI** — task progress queries: `TotalTasks`, `CompletedTasks`, `IsDone`, `CrewProgress`, `IncompleteTasks`, `RemainingTaskCount`.
+
+## Renamed dependency
+
+- `ClassicUs.Manactor` → `ClassicUs.Reactor` (namespace, package id, and GUID). All `Manactor*` types renamed to `Reactor*`.
+- Target game: Classic Us 2026.8.16 (`ClassicUs.GameLibs` 2026.8.16.1).
+
 # ManuAPI v1.3.24
 
-First public release of ManuAPI, a modding framework for Classic Us (Among Us) BepInEx mods built on top of Manactor. This changelog consolidates every change from the initial 1.3.3 compatibility pass up to this release.
+First public release of ManuAPI, a modding framework for Classic Us (Among Us) BepInEx mods built on top of Reactor. This changelog consolidates every change from the initial 1.3.3 compatibility pass up to this release.
 
 ## Roles
 
@@ -43,4 +61,4 @@ First public release of ManuAPI, a modding framework for Classic Us (Among Us) B
 
 ## Dependencies
 
-- Requires `ClassicUs.Manactor` 1.0.26+ and `ClassicUs.GameLibs` 2026.7.4.1, targeting Classic Us 2026.7.4.
+- Requires `ClassicUs.Reactor` 1.0.26+ and `ClassicUs.GameLibs` 2026.7.4.1, targeting Classic Us 2026.7.4.

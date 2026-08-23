@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using ClassicUs.Manactor;
+using ClassicUs.Reactor;
 using HarmonyLib;
 using UnityEngine;
 
@@ -285,9 +285,9 @@ namespace ClassicUs.ManuAPI
         {
             try
             {
-                ManactorAPI.FlushPendingIl2CppTypeRegistrations();
+                ReactorAPI.FlushPendingIl2CppTypeRegistrations();
                 RoleRegistry.EnsureAllTypesRegistered();
-                ManactorAPI.FlushPendingIl2CppTypeRegistrations();
+                ReactorAPI.FlushPendingIl2CppTypeRegistrations();
                 RoleRegistry.EnsureAllTypesRegistered();
             }
             catch (Exception e) { ManuAPIPlugin.Log.LogError("Flush pending role registrations: " + e); }

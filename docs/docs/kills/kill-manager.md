@@ -27,7 +27,7 @@ KillManager.Kill(owner, target, new KillRequest
 
 :::info Networked automatically
 Kills are host-authoritative — call `KillManager.Kill` from any client, and it routes
-through Manactor's RPC system to the host before applying.
+through Reactor's RPC system to the host before applying.
 :::
 
 ## Why not just call `RpcMurderPlayer`?

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using ClassicUs.Manactor;
+using ClassicUs.Reactor;
 
 namespace ClassicUs.ManuAPI
 {
@@ -25,7 +25,7 @@ namespace ClassicUs.ManuAPI
 
         internal static void RegisterNetworkHandlers()
         {
-            ManactorAPI.RegisterRpcMethods(typeof(RoleRegistry));
+            ReactorAPI.RegisterRpcMethods(typeof(RoleRegistry));
         }
 
         public static void Register(CustomRole descriptor, Func<bool> isClassReady, Action ensureClassRegistered, Func<Il2CppSystem.Type> getIl2CppType)
@@ -354,11 +354,11 @@ namespace ClassicUs.ManuAPI
             {
                 if (rng.NextDouble() * 100.0 >= descriptor.RoleChancePercent) continue;
                 if (AssignCustomRole(candidates[i], descriptor, true))
-                    ManactorAPI.SendRpcMethod(RpcAssignCustomRoleKey, candidates[i].Data.PlayerId, descriptor.RoleTypeName);
+                    ReactorAPI.SendRpcMethod(RpcAssignCustomRoleKey, candidates[i].Data.PlayerId, descriptor.RoleTypeName);
             }
         }
 
-        [ManactorRpc(RpcAssignCustomRoleKey)]
+        [ReactorRpc(RpcAssignCustomRoleKey)]
         private static void OnAssignCustomRoleRpc(byte senderId, byte playerId, string roleTypeName)
         {
             var client = AmongUsClient.Instance;

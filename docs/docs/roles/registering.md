@@ -24,7 +24,7 @@ public static bool IsMyRole(PlayerControl player) =>
 Use `CustomImpostorRole` when the role should keep Impostor abilities, and
 `CustomCrewmateRole` when it should keep Crewmate behaviour. ManuAPI assigns the
 appropriate native role before applying your descriptor, then synchronises the custom
-identity to every modded client through Manactor.
+identity to every modded client through Reactor.
 
 ## Native IL2CPP roles
 

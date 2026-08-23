@@ -67,8 +67,8 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/TechDevOfficial/ClassicUs.Manactor',
-            label: 'Manactor',
+            href: 'https://github.com/TechDevOfficial/ClassicUs.Reactor',
+            label: 'Reactor',
             position: 'right',
           },
         ],
@@ -88,7 +88,7 @@ const config = {
           {
             title: 'Ecosystem',
             items: [
-              {label: 'Manactor', href: 'https://github.com/TechDevOfficial/ClassicUs.Manactor'},
+              {label: 'Reactor', href: 'https://github.com/TechDevOfficial/ClassicUs.Reactor'},
               {label: 'GameLibs', href: 'https://github.com/TechDevOfficial/ClassicUs.GameLibs'},
             ],
           },
@@ -99,7 +99,7 @@ const config = {
             ],
           },
         ],
-        copyright: `ManuAPI — built for Classic Us. Runs on top of Manactor.`,
+        copyright: `ManuAPI — built for Classic Us. Runs on top of Reactor.`,
       },
       prism: {
         theme: prismThemes.oneLight,

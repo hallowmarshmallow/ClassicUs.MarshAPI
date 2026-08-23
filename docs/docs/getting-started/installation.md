@@ -33,7 +33,7 @@ machine path; you pass the game folder only when you want to copy a finished DLL
 
   <ItemGroup>
     <PackageReference Include="ClassicUs.GameLibs" Version="2026.7.11.1" PrivateAssets="all" />
-    <PackageReference Include="ClassicUs.Manactor" Version="1.1.0" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="ClassicUs.Reactor" Version="1.1.0" PrivateAssets="all" ExcludeAssets="runtime" />
     <PackageReference Include="ClassicUs.ManuAPI" Version="1.5.1" PrivateAssets="all" ExcludeAssets="runtime" />
   </ItemGroup>
 
@@ -50,12 +50,12 @@ Instead of editing XML yourself, you can add the packages with these commands:
 
 ```powershell
 dotnet add package ClassicUs.GameLibs --version 2026.7.11.1
-dotnet add package ClassicUs.Manactor --version 1.1.0
+dotnet add package ClassicUs.Reactor --version 1.1.0
 dotnet add package ClassicUs.ManuAPI --version 1.5.1
 ```
 
 Then add `AllowUnsafeBlocks` and the optional `CopyToPlugins` target from the template
-above. `ExcludeAssets="runtime"` is important: Manactor and ManuAPI are
+above. `ExcludeAssets="runtime"` is important: Reactor and ManuAPI are
 separate BepInEx plugins, so your mod must reference them at compile time without bundling
 another copy into its output.
 

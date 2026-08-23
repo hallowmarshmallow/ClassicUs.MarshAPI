@@ -10,10 +10,10 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <NoWarn>CS0626;CS0649;CS8632;CS0108</NoWarn>
 
-    <Version>1.5.1</Version>
+    <Version>1.6.0</Version>
     <PackageId>ClassicUs.ManuAPI</PackageId>
     <Authors>Manu</Authors>
-    <Description>Modding framework/SDK for Classic Us (Among Us) BepInEx mods. Provides reusable helpers for ability buttons, custom roles and more, built on top of ClassicUs.Manactor.</Description>
+    <Description>Modding framework/SDK for Classic Us (Among Us) BepInEx mods. Provides reusable helpers for ability buttons, custom roles, game modes, assets, audio, player utilities, cosmetics, RPC serialization, map queries, meeting helpers, and coroutine management — built on top of ClassicUs.Reactor.</Description>
     <PackageTags>among-us classic-us bepinex mod sdk framework</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageOutputPath>$(MSBuildProjectDirectory)\nupkg</PackageOutputPath>
@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <PackageReference Include="ClassicUs.GameLibs" Version="2026.8.16.1" PrivateAssets="all" />
-    <PackageReference Include="ClassicUs.Manactor" Version="1.1.0" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="ClassicUs.Reactor" Version="1.1.0" PrivateAssets="all" ExcludeAssets="runtime" />
   </ItemGroup>
 
   <Target Name="CopyToPlugins" AfterTargets="Build" Condition="'$(ClassicUsGameDir)' != ''">

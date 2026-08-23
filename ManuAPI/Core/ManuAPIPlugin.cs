@@ -2,17 +2,17 @@ using System;
 using BepInEx;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
-using ClassicUs.Manactor;
+using ClassicUs.Reactor;
 using HarmonyLib;
 
 namespace ClassicUs.ManuAPI
 {
     [BepInPlugin(Guid, "Classic Us ManuAPI", Version)]
-    [BepInDependency(ManactorPlugin.Guid)]
+    [BepInDependency(ReactorPlugin.Guid)]
     public class ManuAPIPlugin : BasePlugin
     {
         public const string Guid = "classicus.manuapi";
-        public const string Version = "1.5.1";
+        public const string Version = "1.6.0";
 
         public static ManualLogSource Log;
 

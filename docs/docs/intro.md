@@ -6,7 +6,7 @@ slug: /
 # ManuAPI
 
 **ManuAPI** is a modding framework for **Classic Us** (Among Us) BepInEx mods, built on
-top of [Manactor](https://github.com/TechDevOfficial/ClassicUs.Manactor). It exists so you
+top of [Reactor](https://github.com/TechDevOfficial/ClassicUs.Reactor). It exists so you
 don't have to relearn the same IL2CPP lessons every time you build a role.
 
 Modding an IL2CPP Unity game means every native class is a wrapper around compiled C++ —
@@ -27,9 +27,9 @@ your role interesting.
 - **Asset loading** — embedded sprites that survive Unity tearing them down mid-match.
 
 :::tip Dependency
-ManuAPI depends on **Manactor** for networking — RPCs, handshakes, lobby-mod detection.
-Declare `[BepInDependency(ManactorPlugin.Guid)]` on your plugin; you rarely need to touch
-Manactor directly.
+ManuAPI depends on **Reactor** for networking — RPCs, handshakes, lobby-mod detection.
+Declare `[BepInDependency(ReactorPlugin.Guid)]` on your plugin; you rarely need to touch
+Reactor directly.
 :::
 
 Start with [Installation](/getting-started/installation), or jump straight to

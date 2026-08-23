@@ -5,7 +5,7 @@ sidebar_position: 1
 # Custom Game Modes
 
 Create a `CustomGameMode` and register one instance from your plugin. The host selects
-the mode with `GameModeRegistry.Select`; ManuAPI sends that selection through Manactor so
+the mode with `GameModeRegistry.Select`; ManuAPI sends that selection through Reactor so
 every modded client activates the same mode.
 
 ```csharp
@@ -36,4 +36,4 @@ GameModeRegistry.Select("my.mod.hide-and-seek");
 Set `OverrideVanillaWinConditions` to `true` only when your mode owns the win logic.
 Return a `GameOverReason` from `CheckEndCriteria()` on the host to end the match, or call
 `GameModeRegistry.EndGame(reason)` directly. Keep additional state synchronised with
-Manactor RPCs; selection synchronisation does not automatically replicate mode data.
+Reactor RPCs; selection synchronisation does not automatically replicate mode data.

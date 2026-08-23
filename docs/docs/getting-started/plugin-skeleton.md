@@ -10,14 +10,14 @@ new`, then paste this minimal plugin:
 ```csharp
 using BepInEx;
 using BepInEx.Unity.IL2CPP;
-using ClassicUs.Manactor;
+using ClassicUs.Reactor;
 using ClassicUs.ManuAPI;
 using UnityEngine;
 
 namespace ClassicUs.MyFirstMod;
 
 [BepInPlugin(Guid, "My First Mod", Version)]
-[BepInDependency(ManactorPlugin.Guid)]
+[BepInDependency(ReactorPlugin.Guid)]
 [BepInDependency(ManuAPIPlugin.Guid)]
 public sealed class MyFirstModPlugin : BasePlugin
 {
@@ -26,8 +26,8 @@ public sealed class MyFirstModPlugin : BasePlugin
 
     public override void Load()
     {
-        // Identifies this mod to Manactor and enables its networking helpers.
-        ManactorAPI.Register("MyFirstMod", Version);
+        // Identifies this mod to Reactor and enables its networking helpers.
+        ReactorAPI.Register("MyFirstMod", Version);
 
         // Adds a simple entry to the game's loaded-mod list.
         ModBadgeAPI.RegisterLoadedModBadge("My First Mod", Version, Color.cyan);
@@ -48,7 +48,7 @@ Impostor internals alive, so buttons, vents and sabotage stay stable.
 ```csharp
 public override void Load()
 {
-    ManactorAPI.Register("MyFirstMod", Version);
+    ReactorAPI.Register("MyFirstMod", Version);
     RoleRegistry.RegisterVirtual(new MyRole());
 }
 
