@@ -11,6 +11,14 @@
 - **CoroutineRunner** — safe Unity coroutine execution from MonoBehaviour callbacks (avoids IEnumerator Harmony patching which segfaults on Linux IL2CPP). All coroutines auto-stop on `GameEvents.GameEnded`.
 - **TaskAPI** — task progress queries: `TotalTasks`, `CompletedTasks`, `IsDone`, `CrewProgress`, `IncompleteTasks`, `RemainingTaskCount`.
 
+## New UI APIs
+
+- **HudOverlay** — player nameplate overrides and floating world-space indicators. `SetNameColor` changes a player's name color. `SetSubText` / `RemoveSubText` / `ClearSubTexts` manage colored sub-text lines positioned under the nameplate (per-player, keyed). `ShowFloatingText` creates a TextMeshPro indicator that follows the player. `ResetAll` cleans up on game end.
+- **ButtonFactory** — safe clickable button creation without cloning the KillButton (which copies IL2CPP component trees and risks native delegate marshalling crashes). `Create` builds a sprite button with AspectPosition anchoring; `CreateText` makes text-only labels. Returns a `ManagedButton` handle — tick it and call `WasClicked()` to detect presses. No `OnClick.AddListener`.
+- **NotificationAPI** — timed on-screen notification system. `Show` displays a colored message that stacks vertically (top-center) and auto-dismisses with a fade-out. Call `Tick` every frame. `Clear` dismisses all.
+- **OverlayAPI** — persistent screen-space text overlay. `SetLine` places text lines at five corner positions (TopLeft, TopRight, BottomLeft, BottomRight, Center). `ShowBanner` displays a large centered banner that fades and auto-dismisses. `Tick` repositions all lines every frame. `Clear` removes everything.
+- **CooldownBar** — horizontal progress/cooldown bar widget. `Create` builds a named bar with colored fill; `SetProgress(0-1)` updates the fill and color (red→yellow→green gradient). `SetVisible` toggles. `Destroy` cleans up.
+
 ## Renamed dependency
 
 - `ClassicUs.Manactor` → `ClassicUs.Reactor` (namespace, package id, and GUID). All `Manactor*` types renamed to `Reactor*`.
