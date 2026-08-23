@@ -19,6 +19,23 @@
 - **OverlayAPI** — persistent screen-space text overlay. `SetLine` places text lines at five corner positions (TopLeft, TopRight, BottomLeft, BottomRight, Center). `ShowBanner` displays a large centered banner that fades and auto-dismisses. `Tick` repositions all lines every frame. `Clear` removes everything.
 - **CooldownBar** — horizontal progress/cooldown bar widget. `Create` builds a named bar with colored fill; `SetProgress(0-1)` updates the fill and color (red→yellow→green gradient). `SetVisible` toggles. `Destroy` cleans up.
 
+## Expanded Settings API
+
+`SettingsMenuBuilder` now has 7 control types (was 2):
+- `AddSectionHeader` — bold gold section title, no controls
+- `AddToggle` — On/Off switch (existing, unchanged)
+- `AddNumeric` — ± step value (existing, unchanged)
+- `AddDropdown` — cycle through string choices with arrow buttons
+- `AddButton` — single action button with colored label
+- `AddSlider` — fine-grained float slider (± small steps)
+- `AddColorPicker` — cycle Palette.PlayerColors with preview swatch
+
+**SettingsSync** — host-authoritative settings broadcast over Reactor RPC.
+Host calls `BeginBuild`, `PushFloat`/`PushBool`/`PushInt`/`PushString`, `EndBuild`
+inside their `SettingsMenuBuilder` callback. Clients call `RegisterFloat`/etc.
+once in `Load()` with apply callbacks. Protocol is versioned binary base64. RPC
+key: `classicus.manuapi.SettingsSync`.
+
 ## Renamed dependency
 
 - `ClassicUs.Manactor` → `ClassicUs.Reactor` (namespace, package id, and GUID). All `Manactor*` types renamed to `Reactor*`.
