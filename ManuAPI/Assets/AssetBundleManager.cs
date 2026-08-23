@@ -46,7 +46,7 @@ namespace ClassicUs.ManuAPI
 
             try
             {
-                var bundle = AssetBundle.LoadFromFile(filePath);
+                var bundle = AssetBundle.LoadFromFileAsync(filePath).assetBundle;
                 if (bundle == null)
                 {
                     ManuAPIPlugin.Log.LogError("AssetBundleManager: LoadFromFile returned null for " + filePath);
@@ -70,10 +70,13 @@ namespace ClassicUs.ManuAPI
                 ManuAPIPlugin.Log.LogError("AssetBundleManager.LoadAsset: bundle '" + bundleKey + "' not loaded.");
                 return null;
             }
-
             try
             {
-                return bundle.LoadAsset<T>(assetName);
+                // AssetBundle APIs vary; use LoadAssetAsync synchronously
+                var req = bundle.LoadAssetAsync(assetName, typeof(T));
+                if (req == null) return null;
+                while (!req.isDone) { /* busy-wait */ }
+                return req.asset as T;
             }
             catch (Exception e)
             {

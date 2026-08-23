@@ -123,9 +123,9 @@ namespace ClassicUs.ManuAPI
             foreach (var comp in clone.GetComponentsInChildren<MonoBehaviour>(true))
             {
                 if (comp == null) continue;
-                if (comp.TryCast<PassiveButton>() != null) continue;
-                if (comp.TryCast<TextMeshPro>() != null) continue;
-                if (comp.TryCast<AspectPosition>() != null) continue;
+                if (comp is PassiveButton) continue;
+                if (comp is TextMeshPro) continue;
+                if (comp is AspectPosition) continue;
                 comp.enabled = false;
                 UnityEngine.Object.Destroy(comp);
             }

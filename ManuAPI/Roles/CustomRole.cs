@@ -46,7 +46,7 @@ namespace ClassicUs.ManuAPI
         public bool Matches(RoleBehaviour role)
         {
             if (role == null) return false;
-            if (role.GetIl2CppType().Name == RoleTypeName) return true;
+            if (role.GetType().Name == RoleTypeName) return true;
             return AssignedRoleName != null && role.roleCodeName == AssignedRoleName;
         }
 
@@ -95,7 +95,7 @@ namespace ClassicUs.ManuAPI
             for (int i = 0; i < roles.Count; i++)
             {
                 var r = roles.get_Item(i);
-                if (r != null && r.GetIl2CppType().Name == templateName)
+                if (r != null && r.GetType().Name == templateName)
                     return r.enemyTeams;
             }
 

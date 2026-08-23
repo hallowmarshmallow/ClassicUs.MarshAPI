@@ -141,8 +141,9 @@ namespace ClassicUs.ManuAPI
             tmp.rectTransform.sizeDelta = new Vector2(8f, 3f);
             tmp.sortingOrder = 25;
 
-            // Auto-destroy after duration via CoroutineRunner.
-            CoroutineRunner.Start(BannerFadeRoutine(go, tmp, duration));
+            // Auto-destroy after duration.
+            if (HudManager.Instance != null)
+                HudManager.Instance.StartCoroutine(BannerFadeRoutine(go, tmp, duration));
         }
 
         private static System.Collections.IEnumerator BannerFadeRoutine(GameObject go, TextMeshPro tmp, float duration)

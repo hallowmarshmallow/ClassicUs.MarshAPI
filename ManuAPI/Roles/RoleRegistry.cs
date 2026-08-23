@@ -167,7 +167,7 @@ namespace ClassicUs.ManuAPI
                 if (!_loggedKillButtonOnce)
                 {
                     _loggedKillButtonOnce = true;
-                    ManuAPIPlugin.Log.LogInfo("UpdateKillButtonVisibility: first call with role=" + role.GetIl2CppType().Name);
+                    ManuAPIPlugin.Log.LogInfo("UpdateKillButtonVisibility: first call with role=" + Il2CppTypeHelper.GetIl2CppTypeName(role));
                 }
 
                 // Virtual roles deliberately retain ImpostorRole/CrewmateRole as
@@ -496,7 +496,7 @@ namespace ClassicUs.ManuAPI
             foreach (var role in RoleManager.Instance.allRoles)
             {
                 if (role == null || role.RoleTeamType != team) continue;
-                var name = role.GetIl2CppType().Name;
+                var name = Il2CppTypeHelper.GetIl2CppTypeName(role);
                 if ((team == RoleTeamTypes.Impostor && name == "ImpostorRole") ||
                     (team == RoleTeamTypes.Crewmate && name == "CrewmateRole"))
                     return role;
@@ -569,8 +569,8 @@ namespace ClassicUs.ManuAPI
 
             try
             {
-                var type = role.GetIl2CppType();
-                if (type != null && type.Name == descriptor.RoleTypeName) return true;
+                var type = Il2CppTypeHelper.GetIl2CppType(role);
+                if (type != null && Il2CppTypeHelper.GetIl2CppTypeName(role) == descriptor.RoleTypeName) return true;
             }
             catch { }
 

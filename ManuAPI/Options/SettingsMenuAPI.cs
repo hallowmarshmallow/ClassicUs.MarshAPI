@@ -356,7 +356,7 @@ namespace ClassicUs.ManuAPI
             if (menu == null || menu.AllItems == null || menu.AllItems.Count == 0) return;
             var parent = menu.AllItems.get_Item(0).parent;
             if (parent == null) return;
-            var template = menu.keyvaluePrefab?.TryCast<NumberOption>();
+            var template = menu.keyvaluePrefab as NumberOption;
             if (template == null) return;
 
             for (int i = 0; i < _registrations.Count; i++)
@@ -561,7 +561,7 @@ namespace ClassicUs.ManuAPI
     {
         private static void Postfix(SettingMenu __instance)
         {
-            var gameMenu = __instance.TryCast<GameSettingMenu>();
+            var gameMenu = __instance as GameSettingMenu;
             if (gameMenu == null) return;
             try { SettingsMenuAPI.BuildAll(gameMenu); }
             catch (Exception e) { ManuAPIPlugin.Log.LogError("SettingsMenuAPI.BuildAll: " + e); }

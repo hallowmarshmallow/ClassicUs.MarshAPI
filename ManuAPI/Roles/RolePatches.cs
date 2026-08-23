@@ -68,7 +68,7 @@ namespace ClassicUs.ManuAPI
 
         private static bool IsVanillaRole(RoleBehaviour role)
         {
-            switch (role.GetIl2CppType().Name)
+            switch (Il2CppTypeHelper.GetIl2CppTypeName(role))
             {
                 case "CrewmateRole":
                 case "ImpostorRole":
@@ -232,7 +232,7 @@ namespace ClassicUs.ManuAPI
             RoleRegistry.SyncAfterNativeSetRole(__instance);
 
             var role = __instance.Data != null ? __instance.Data.myRole : null;
-            string current = role != null ? role.GetIl2CppType().Name : "<null>";
+            string current = role != null ? Il2CppTypeHelper.GetIl2CppTypeName(role) : "<null>";
             if (current != _lastLocalRoleTypeName)
             {
                 ManuAPIPlugin.Log.LogWarning("Local player myRole changed: " + (_lastLocalRoleTypeName ?? "<none>") + " -> " + current);
